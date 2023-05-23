@@ -38,14 +38,14 @@ def make_code_review_request(filecontent, model):
         messages=messages
     )
 
-    return res["choices"][0]["message"]
+    return res["choices"][0]["message"]["content"]
 
 def main():
     parser = argparse.ArgumentParser(description="Simple code reviewer for a file")
     parser.add_argument("file")
     parser.add_argument("--model", default="gpt-3.5-turbo")
     args = parser.parse_args()
-    code_review(args.file, args.file)
+    code_review(args.file, args.model)
 
 if __name__ == "__main__":
     load_dotenv()
